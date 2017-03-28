@@ -133,7 +133,7 @@ def modify(network, gradient, example_ins, raw_outs, learning_rate):
 if __name__ == "__main__":
 
     print("Please input the length of the input, followed by the number of outputs,"
-      " followed by the number of training examples")
+          " followed by the number of training examples")
     (in_len, out_len, ex_num) =map(int,raw_input().split())
     print("Please enter the name of the file that holds the examples")
     filename = raw_input()
@@ -175,28 +175,28 @@ if __name__ == "__main__":
             cost_per_ex = reduce(lambda x, y:x+y, map(lambda x: .5* float(abs(x))**2.0,np.subtract(outlayer,example_outs[j])))
             ##print cost_per_ex
             cost_accumulator += cost_per_ex
-            # modify the network weights using the data from this batch
+        # modify the network weights using the data from this batch
         modify(network, gradients, example_ins, raws_outs, learn_rate)
         # for graphing purposes
         indices.append(i)
         costs.append(cost_accumulator)
         #if i % 10 == 0 :
-        # print cost_accumulator
+           # print cost_accumulator
         #for graphing purposes
         weights[i] = flatten(network)
-        # for plotting purposes
-        indices = indices[1:]
-        costs = costs[1:]
-        fig1 = plt.figure(1)
-        plt.subplot(211)
-        plt.plot(indices, costs)
-        plt.subplot(212)
-        for i in range(len(weights[0])):
-            plt.plot(indices, [net[i] for net in weights][1:], label="w"+str(i+1))
-        plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=2,ncol=9, mode="expand", borderaxespad=0.)
-        print network
-        print flatten(network)
-        plt.show()
+    # for plotting purposes
+    indices = indices[1:]
+    costs = costs[1:]
+    fig1 = plt.figure(1)
+    plt.subplot(211)
+    plt.plot(indices, costs)
+    plt.subplot(212)
+    for i in range(len(weights[0])):
+        plt.plot(indices, [net[i] for net in weights][1:], label="w"+str(i+1))
+    plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=2,ncol=9, mode="expand", borderaxespad=0.)
+    print network
+    print flatten(network)
+    plt.show()
 
     print("Press enter to quit")
     i = raw_input()
